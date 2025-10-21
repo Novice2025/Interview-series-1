@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Interview English — High-Impact Expressions</title>
+  <meta name="description" content="Professional interview expressions for Brazilian professionals. Examples, translations and walkthroughs." />
+  <!-- Tailwind Play CDN (quick & simple) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Small custom styles */
+    .card-focus { box-shadow: 0 10px 30px rgba(99,102,241,0.12); border-color:#6366f1 }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <div class="max-w-6xl mx-auto p-6 md:p-12">
+    <header class="mb-8">
+      <h1 class="text-3xl md:text-4xl font-extrabold">Interview English — High-Impact Expressions</h1>
+      <p class="mt-2 text-gray-600">Professional phrasing, clear examples, and bilingual explanations — tailored for Brazilian professionals who want to sound confident and strategic.</p>
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Left column: cards -->
+      <nav class="col-span-1">
+        <div id="cards" class="space-y-4">
+          <!-- Buttons added by JS -->
+        </div>
+
+        <div class="mt-6 p-4 rounded-xl bg-white border">
+          <h3 class="text-sm font-semibold">Lesson tips</h3>
+          <ol class="mt-2 text-sm text-gray-600 list-decimal list-inside space-y-1">
+            <li>Always give a measurable result when possible (numbers matter).</li>
+            <li>Use the STAR framework: Situation → Task → Action → Result.</li>
+            <li>Balance confidence with humility — be decisive, not arrogant.</li>
+          </ol>
+        </div>
+      </nav>
+
+      <!-- Right column: detail -->
+      <section class="col-span-2">
+        <article id="detail" class="p-6 rounded-2xl bg-white border shadow-sm">
+          <!-- Content filled by JS -->
+        </article>
+
+        <div class="mt-6 flex gap-3">
+          <button id="backBtn" class="px-4 py-2 rounded bg-gray-200">Reset</button>
+          <button id="practiceTip" class="px-4 py-2 rounded bg-indigo-600 text-white">Practice tip</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-12 text-xs text-gray-500">Made for Daby • Static HTML • Copy freely and adapt for lessons.</footer>
+  </div>
+
+  <script>
+    // Data: three expressions
+    const expressions = [
+      {
+        id: 'streamline',
+        title: 'Streamline',
+        short: 'Make a process or system simpler and more efficient.',
+        why: [
+          'Shows strategic thinking and focus on efficiency.',
+          'Used for processes, workflows, communications, and decisions.',
+          'Pairs well with measurable outcomes (time saved, cost reduced).'
+        ],
+        alternatives: ['make it easier', 'simplify the process', 'fix the process'],
+        examples: [
+          'I streamlined the approval process, which reduced decision time from five days to one.',
+          'We streamlined our client onboarding system to improve customer satisfaction.',
+          'I identified redundant steps and streamlined communication between departments.',
+          'After the audit, I proposed a strategy to streamline reporting and data flow.',
+          'I always look for opportunities to streamline workflows without compromising quality.'
+        ],
+        pt: '“Streamline” significa tornar algo mais eficiente e direto; em português: otimizar ou tornar mais ágil.'
+      },
+      {
+        id: 'foster',
+        title: 'I foster a positive work environment',
+        short: 'Create and encourage a healthy, motivating, collaborative atmosphere at work.',
+        why: [
+          'Demonstrates emotional intelligence and team-orientation.',
+          'Implies active leadership: you build culture, not just manage tasks.',
+          'Ideal for managerial, HR, and leadership interview answers.'
+        ],
+        alternatives: ["I'm nice to my team", 'I have good relationships at work', 'I motivate people'],
+        examples: [
+          'I foster a positive work environment by promoting open communication and feedback.',
+          'I believe leaders should foster a positive work environment where everyone feels valued.',
+          'Through mentorship, I foster a positive culture of learning and innovation.',
+          'Even during tight deadlines, I focus on fostering a positive and supportive atmosphere.',
+          'My goal as a leader is to foster collaboration and shared accountability.'
+        ],
+        pt: '“Foster a positive work environment” significa criar e manter um ambiente de trabalho positivo; em português: promover/estimular um ambiente saudável.'
+      },
+      {
+        id: 'conflicts',
+        title: 'Conflicts hinder the progress of the sales results',
+        short: 'Internal conflicts can slow or negatively impact team performance and sales outcomes.',
+        why: [
+          'Shows awareness of team dynamics and its business impact.',
+          'Useful when describing challenges and corrective actions (STAR).',
+          'Strong, formal phrasing — "hinder" is more precise than "affect".'
+        ],
+        alternatives: ['Conflicts make things worse', 'We fight a lot, and it affects sales', 'We have disagreements'],
+        examples: [
+          'At one point, team conflicts hindered the progress of our sales targets, so I implemented weekly alignment meetings.',
+          'I realized that unresolved conflicts hindered the progress of our sales results, so I invested time in coaching.',
+          'When communication broke down, conflicts hindered collaboration, and I addressed it through mediation.',
+          'I learned that conflicts, if unmanaged, can hinder performance and team morale.',
+          "I ensure conflicts don't hinder results by promoting transparency and team dialogue."
+        ],
+        pt: '“Conflicts hinder the progress of the sales results” significa que conflitos atrapalham o progresso dos resultados de vendas; "hinder" = dificultar/impedir.'
+      }
+    ];
+
+    // Utilities
+    function el(tag, attrs = {}, ...children) {
+      const node = document.createElement(tag);
+      for (const k in attrs) {
+        if (k === 'class') node.className = attrs[k];
+        else if (k === 'html') node.innerHTML = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      }
+      children.forEach(c => {
+        if (typeof c === 'string') node.appendChild(document.createTextNode(c));
+        else if (c) node.appendChild(c);
+      });
+      return node;
+    }
+
+    // Build left cards
+    const cardsContainer = document.getElementById('cards');
+    expressions.forEach((exp, idx) => {
+      const btn = el('button', { class: 'w-full text-left p-4 rounded-2xl border transition-shadow bg-white/90 hover:shadow-lg focus:outline-none flex justify-between items-start', 'data-id': exp.id });
+      btn.innerHTML = `
+        <div>
+          <h2 class="font-semibold">${exp.title}</h2>
+          <p class="mt-1 text-sm text-gray-500">${exp.short}</p>
+        </div>
+        <div class="ml-3 text-xs text-gray-400">#${idx+1}</div>
+      `;
+      btn.addEventListener('click', () => selectExpression(exp.id));
+      // small action buttons inside the card
+      const actions = el('div', { class: 'mt-3 flex gap-2 w-full' });
+      const copyBtn = el('button', { class: 'text-xs px-2 py-1 rounded bg-indigo-50 border' }, 'Copy examples');
+      copyBtn.addEventListener('click', (e) => { e.stopPropagation(); copyText(exp.examples.join('\\n')); });
+      const toggleBtn = el('button', { class: 'text-xs px-2 py-1 rounded border' }, 'Toggle PT');
+      toggleBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePT(); });
+      actions.appendChild(copyBtn);
+      actions.appendChild(toggleBtn);
+      btn.appendChild(actions);
+      cardsContainer.appendChild(btn);
+    });
+
+    // Detail rendering
+    const detail = document.getElementById('detail');
+    let showPT = true;
+    let activeId = expressions[0].id;
+
+    function renderDetail(exp) {
+      detail.innerHTML = '';
+      const heading = el('div', { class: 'flex items-start justify-between gap-4' });
+      const left = el('div');
+      left.appendChild(el('h2', { class: 'text-2xl font-bold' }, exp.title));
+      left.appendChild(el('p', { class: 'mt-2 text-gray-600' }, exp.short));
+      heading.appendChild(left);
+
+      const right = el('div', { class: 'flex items-center gap-3' });
+      const ptLabel = el('label', { class: 'flex items-center gap-2 text-sm' });
+      const checkbox = el('input', { type: 'checkbox', checked: 'checked' });
+      checkbox.checked = showPT;
+      checkbox.addEventListener('change', () => { showPT = checkbox.checked; renderDetail(exp); });
+      ptLabel.appendChild(checkbox);
+      ptLabel.appendChild(el('span', {}, 'Show Portuguese'));
+      right.appendChild(ptLabel);
+
+      const copyAllBtn = el('button', { class: 'px-3 py-2 rounded bg-indigo-600 text-white text-sm' }, 'Copy all');
+      copyAllBtn.addEventListener('click', () => copyText(exp.title + '\\n' + exp.examples.join('\\n')));
+      right.appendChild(copyAllBtn);
+      heading.appendChild(right);
+      detail.appendChild(heading);
+
+      // two-column content
+      const grid = el('section', { class: 'mt-6 grid grid-cols-1 md:grid-cols-2 gap-6' });
+
+      const leftCol = el('div');
+      leftCol.appendChild(el('h3', { class: 'font-semibold' }, 'Why this expression?'));
+      const whyList = el('ol', { class: 'mt-2 list-decimal list-inside text-gray-700 space-y-2' });
+      exp.why.forEach(w => whyList.appendChild(el('li', {}, w)));
+      leftCol.appendChild(whyList);
+
+      leftCol.appendChild(el('h4', { class: 'mt-4 font-semibold' }, 'Alternatives (less effective)'));
+      leftCol.appendChild(el('p', { class: 'mt-2 text-sm text-gray-600' }, exp.alternatives.join(' • ')));
+
+      if (showPT) {
+        leftCol.appendChild(el('div', { class: 'mt-4 p-3 bg-gray-50 rounded border' },
+          el('strong', { class: 'block' }, 'Tradução / Explicação:'),
+          el('p', { class: 'text-sm text-gray-700 mt-1' }, exp.pt)
+        ));
+      }
+
+      const rightCol = el('div');
+      rightCol.appendChild(el('h3', { class: 'font-semibold' }, 'Walkthrough — 5 sentence examples (real scenario)'));
+      const examplesWrap = el('div', { class: 'mt-3 space-y-3' });
+      exp.examples.forEach((ex, i) => {
+        const card = el('div', { class: 'p-3 rounded-lg border flex items-start justify-between bg-white/90' });
+        card.appendChild(el('div', {}, el('p', { class: 'text-sm' }, ex)));
+        const rightSide = el('div', { class: 'ml-4 flex flex-col items-end text-xs gap-2' });
+        const copyBtn = el('button', { class: 'px-2 py-1 rounded text-xs border' }, 'Copy');
+        copyBtn.addEventListener('click', () => copyText(ex));
+        rightSide.appendChild(copyBtn);
+        rightSide.appendChild(el('span', { class: 'text-gray-400' }, '#' + (i+1)));
+        card.appendChild(rightSide);
+        examplesWrap.appendChild(card);
+      });
+      rightCol.appendChild(examplesWrap);
+
+      grid.appendChild(leftCol);
+      grid.appendChild(rightCol);
+      detail.appendChild(grid);
+
+      // Suggested answer templates
+      const section = el('section', { class: 'mt-6' });
+      section.appendChild(el('h3', { class: 'font-semibold' }, 'Suggested answer format (formal)'));
+      section.appendChild(el('p', { class: 'mt-2 text-sm text-gray-700' },
+        'Use this template: Situation → Task → Action → Result. Start with one-line context, explain the task, describe concrete actions (active verbs), finish with measurable outcome.'
+      ));
+
+      section.appendChild(el('div', { class: 'mt-3 p-4 rounded border bg-indigo-50' },
+        el('p', { class: 'text-sm' }, el('strong', {}, 'Example (formal):')),
+        el('p', { class: 'mt-2 text-sm' }, `"In my previous role, our approval cycle was delaying project launches (Situation). I was responsible for reducing lead time (Task). I mapped the workflow, removed redundant approvals and automated notifications, which streamlined the process (Action). As a result, we reduced time-to-launch by 80% and improved stakeholder satisfaction" (Result).`)
+      ));
+
+      section.appendChild(el('div', { class: 'mt-3 p-4 rounded border bg-green-50' },
+        el('p', { class: 'text-sm' }, el('strong', {}, 'Example (casual):')),
+        el('p', { class: 'mt-2 text-sm' }, `"We had a slow approval system, so I cleaned it up, removed extra steps and set automatic reminders. It made launches much faster and everyone was happier."`)
+      ));
+
+      detail.appendChild(section);
+    }
+
+    function selectExpression(id) {
+      activeId = id;
+      // highlight card
+      document.querySelectorAll('#cards button').forEach(btn => {
+        if (btn.getAttribute('data-id') === id) {
+          btn.classList.add('card-focus');
+        } else {
+          btn.classList.remove('card-focus');
+        }
+      });
+      const exp = expressions.find(e => e.id === id);
+      renderDetail(exp);
+    }
+
+    // copy util
+    function copyText(text) {
+      if (!navigator.clipboard) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); alert('Copied'); } catch (e) { alert('Copy failed'); }
+        ta.remove();
+        return;
+      }
+      navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard'), () => alert('Copy failed'));
+    }
+
+    // toggle global PT
+    function togglePT() { showPT = !showPT; selectExpression(activeId); }
+
+    // practice tip button
+    document.getElementById('practiceTip').addEventListener('click', () => {
+      alert('Tip: practice aloud, record yourself, and compare delivery. Aim for clarity + calm confidence.');
+    });
+
+    // back button resets view
+    document.getElementById('backBtn').addEventListener('click', () => {
+      showPT = true;
+      selectExpression(expressions[0].id);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // initialize
+    selectExpression(expressions[0].id);
+  </script>
+</body>
+</html>
